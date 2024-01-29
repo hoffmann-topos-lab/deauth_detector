@@ -7,6 +7,7 @@ extern "C" {
 
 int deauthCount = 0; // Contador para pacotes de desautenticação
 
+//Mostra as mensagens no display
 void displayMessage(const char* message, int line) {
   if (line == 0) {
     M5.Lcd.fillScreen(BLACK);
@@ -15,6 +16,7 @@ void displayMessage(const char* message, int line) {
   M5.Lcd.println(message);
 }
 
+//Emite sinal sonoro 
 void beep(int duration) {
   ledcAttachPin(0, 0);
   ledcSetup(0, 2000, 8);
@@ -23,6 +25,7 @@ void beep(int duration) {
   ledcWriteTone(0, 0);
 }
 
+//Função responsável pela detecção de pacotes de deauth
 void snifferCallback(void* buf, wifi_promiscuous_pkt_type_t type) {
   if (type != WIFI_PKT_MGMT) return;
 
@@ -74,6 +77,6 @@ void setup() {
 }
 
 void loop() {
-  delay(1000); // A lógica principal está na função de callback
+  delay(1000); 
 }
 
